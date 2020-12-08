@@ -1,0 +1,48 @@
+@import "./variables";
+
+.table {
+  margin-top: 1rem;
+  padding-left: $padding-left;
+}
+
+.standing {
+  display: flex;
+  margin: 0.8rem 0;
+  &__position {
+    color: rgb(7, 70, 7);
+  }
+  &__team {
+    display: flex;
+    padding: 0 2rem;
+    &__img {
+      padding-right: 0.3rem;
+      width: 30px;
+    }
+  }
+}
+
+.score {
+  padding: 0.4rem 0;
+  width: 55%;
+  max-width: 380px;
+  margin: 0 auto;
+  &__container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    &__home-team,
+    &__away-team {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    &__score {
+      margin: auto 0;
+    }
+    img {
+      width: 50px;
+    }
+  }
+}

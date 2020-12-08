@@ -1,0 +1,10 @@
+@import "./variables";
+
+.dashboard-form {
+  display: flex;
+  padding-left: $padding-left;
+
+  &__radio {
+    padding-left: $padding-left;
+  }
+}

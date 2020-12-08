@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Form from "./components/Form";
+import Table from "./components/Table";
+import "./style/index.scss";
 
-function App() {
+const App = () => {
+  const [league, setLeague] = useState(2019);
+  const [whatToShow, setWhatToShow] = useState("matches?status=FINISHED");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header
+        title={"Footballhalla"}
+        subtitle={"The majestic hall of football"}
+      />
+      <Form
+        changeLeague={(league) => setLeague(league)}
+        whatToShow={(value) => setWhatToShow(value)}
+        label={"pick your favourite league: "}
+      />
+      <Table league={league} whatToShow={whatToShow} />
     </div>
   );
-}
+};
 
 export default App;
