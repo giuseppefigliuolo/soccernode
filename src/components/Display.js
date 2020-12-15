@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Standing from "./Standing";
 import Score from "./Score";
 import LoadingLi from "./LoadingLi";

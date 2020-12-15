@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Standing = ({ teams, position, teamName, points }) => {
   const teamObj = teams.find((el) => {
@@ -7,7 +8,11 @@ const Standing = ({ teams, position, teamName, points }) => {
     }
   });
   return (
-    <li>
+    <motion.li
+      initial={{ scale: 0.6 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.25 }}
+    >
       <div className="standing">
         <p className="standing__position">{position}</p>
         {teamObj && (
@@ -22,7 +27,7 @@ const Standing = ({ teams, position, teamName, points }) => {
         )}
         <p className="standing__points">{points}</p>
       </div>
-    </li>
+    </motion.li>
   );
 };
 
