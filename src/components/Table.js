@@ -5,9 +5,12 @@ const Table = ({ league, whatToShow }) => {
   const [data, setData] = useState([]);
   const [dataScore, setDataScore] = useState([]);
   const [teams, setTeams] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const bothFetches = async () => {
+      setIsLoading(true);
       const fetchFootballApi = async () => {
         const url = `https://api.football-data.org/v2/competitions/${league}/${whatToShow}`;
         await fetch(url, {
@@ -29,8 +32,12 @@ const Table = ({ league, whatToShow }) => {
             } else {
               setData(data.standings[0].table);
             }
+            setIsLoading(false);
+            setError(false);
           })
-          .catch((error) => console.log(error));
+          .catch((err) => {
+            setError(true);
+          });
       };
 
       const fetchTeams = async () => {
@@ -52,7 +59,9 @@ const Table = ({ league, whatToShow }) => {
             }));
             setTeams(teamsObj);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            setError(true);
+          });
       };
 
       fetchFootballApi();
@@ -69,6 +78,8 @@ const Table = ({ league, whatToShow }) => {
           data={data}
           dataScore={dataScore}
           teams={teams}
+          isLoading={isLoading}
+          error={error}
         />
       }
     </main>

@@ -15,12 +15,16 @@ const Score = ({ teams, homeTeam, awayTeam, scoreHomeTeam, scoreAwayTeam }) => {
     <li className="score">
       { homeTeamObj && <div className="score__container">
         <div className="score__container__home-team">
-          <img src={homeTeamObj.logo} alt="" />
+          <div className="score__container__team-image">
+            <img src={homeTeamObj.logo} alt="" />
+          </div>
           <p>{homeTeamObj.shortName}</p>
         </div>
         <p className="score__container__score">{scoreHomeTeam} : {scoreAwayTeam}</p>
         <div className="score__container__away-team">
-          <img src={awayTeamObj.logo} alt="" />
+          <div className="score__container__team-image">
+            <img src={awayTeamObj.logo} alt="" />
+          </div>
           <p>{awayTeamObj.shortName}</p>
         </div>
       </div>}

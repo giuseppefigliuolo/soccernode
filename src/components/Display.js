@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Standing from "./Standing";
 import Score from "./Score";
+import LoadingLi from "./LoadingLi";
+import ErrorModal from "./ErrorModal";
 
-const Display = ({ whatToShow, teams, data, dataScore }) => {
+const Display = ({ whatToShow, teams, data, dataScore, isLoading, error }) => {
   return (
-    <ul className="table">
-      {whatToShow === "standings" &&
+    <ul
+      className={whatToShow === "standings" ? "table standings-table" : "table"}
+    >
+      {error && <ErrorModal />}
+      {isLoading && !error ? (
+        <LoadingLi />
+      ) : whatToShow === "standings" ? (
         data.map((el, i) => (
           <Standing
             key={i}
@@ -14,8 +21,8 @@ const Display = ({ whatToShow, teams, data, dataScore }) => {
             teamName={el.team.name}
             points={el.points}
           />
-        ))}
-      {whatToShow !== "standings" &&
+        ))
+      ) : (
         dataScore.length < 40 &&
         dataScore.map((el, i) => (
           <Score
@@ -26,7 +33,8 @@ const Display = ({ whatToShow, teams, data, dataScore }) => {
             scoreHomeTeam={el.score.fullTime.homeTeam}
             scoreAwayTeam={el.score.fullTime.awayTeam}
           />
-        ))}
+        ))
+      )}
     </ul>
   );
 };
